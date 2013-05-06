@@ -1,6 +1,6 @@
-# BootstrapFileInputRails
+# Bootstrap file input, for rails !
 
-TODO: Write a gem description
+This gem is a port of the repository : [Bootstrap file input](https://github.com/grevory/bootstrap-file-input)
 
 ## Installation
 
@@ -18,7 +18,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Make sure bootstrap is installed and required.
+
+In your applications.js file 
+
+    //= require bootstrap.file-input
 
 ## Contributing
 
