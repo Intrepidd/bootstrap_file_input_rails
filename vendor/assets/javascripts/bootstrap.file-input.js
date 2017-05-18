@@ -10,9 +10,11 @@
   <a class="btn">Browse</a>
 
 */
-$(function() {
+(function($) {
 
-$('input[type=file]').each(function(i,elem){
+$.fn.bootstrapFileInput = function(custom_selector) {
+custom_selector = (typeof custom_selector !== 'undefined') ? custom_selector : '';
+$('input[type=file]' + custom_selector).each(function(i,elem){
 
   // Maybe some fields don't need to be standardized.
   if (typeof $(this).attr('data-bfi-disabled') != 'undefined') {
@@ -103,4 +105,8 @@ var cssHtml = '<style>'+
   '</style>';
 $('link[rel=stylesheet]').eq(0).before(cssHtml);
 
-});
+}}(jQuery));
+
+$(document).ready(function() {
+  $.fn.bootstrapFileInput()
+})
