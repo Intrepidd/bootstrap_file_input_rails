@@ -10,9 +10,11 @@
   <a class="btn">Browse</a>
 
 */
-$(function() {
+(function($) {
 
-$('input[type=file]').each(function(i,elem){
+$.fn.bootstrapFileInput = function(custom_selector) {
+custom_selector = (typeof custom_selector !== 'undefined') ? custom_selector : '';
+$('input[type=file]' + custom_selector).each(function(i,elem){
 
   // Maybe some fields don't need to be standardized.
   if (typeof $(this).attr('data-bfi-disabled') != 'undefined') {
@@ -82,7 +84,8 @@ $('input[type=file]').each(function(i,elem){
     // Remove any previous file names
     $(this).parent().next('.file-input-name').remove();
     if ($(this).prop('files').length > 1) {
-      $(this).parent().after('<span class="file-input-name">'+$(this)[0].files.length+' files</span>');
+      var textFiles = $(this).data('text-files') || 'Archivos';
+      $(this).parent().after('<span class="file-input-name">'+$(this)[0].files.length+' '+ textFiles +'</span>');
     }
     else {
       $(this).parent().after('<span class="file-input-name">'+$(this).val().replace('C:\\fakepath\\','')+'</span>');
@@ -103,4 +106,8 @@ var cssHtml = '<style>'+
   '</style>';
 $('link[rel=stylesheet]').eq(0).before(cssHtml);
 
-});
+}}(jQuery));
+
+$(document).ready(function() {
+  $.fn.bootstrapFileInput()
+})
